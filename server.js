@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import express from 'express';
 import Thread from './model/thread.js';
 import cors from 'cors';
-import timeout from 'connect-timeout';
 import "dotenv/config.js"
 import OpenAI from "openai";
 
@@ -23,7 +22,6 @@ app.get("/", (req, res) => {
 
 app.use(express.json());
 app.use(cors());
-app.use(timeout('10s'));
 
 app.post("/api/init-chat/", async (req, res) => {
   try {
@@ -57,7 +55,7 @@ async function checkStatus(threadId, runId) {
         }
       }
     } else {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 10000));
     }
   }
   return { message: "No response from assistant." };  
