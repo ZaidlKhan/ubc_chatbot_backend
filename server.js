@@ -6,7 +6,6 @@ import timeout from 'connect-timeout';
 import "dotenv/config.js"
 import OpenAI from "openai";
 
-const MONGO_KEY = process.env.MONGO_KEY; 
 const API_KEY = process.env.AI_KEY;
 
 const openai = new OpenAI({apiKey: API_KEY,
@@ -21,10 +20,6 @@ app.get("/", (req, res) => {
   res.send("server is running");
 })
 
-mongoose.connect(MONGO_KEY, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
 
 app.use(express.json());
 app.use(cors());
